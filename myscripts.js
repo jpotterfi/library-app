@@ -27,6 +27,7 @@ function Book(author, title, numberOfPages, read, genre, order){
 Book.prototype = Object.create(Status.prototype);
 
 submit.addEventListener("click", function(){
+  
   let author = document.getElementById("author").value;
   let title = document.getElementById("title").value;
   let numberOfPages = document.getElementById("numberOfPages").value;
@@ -125,9 +126,21 @@ submit.addEventListener("click", function(){
 
             deleteButton.addEventListener("click", function(){
                 const element = document.getElementById("bookCard" + deleteButton.id);
-                myLibrary.splice(deleteButton.id, 1);
-                order--;
                 element.remove();
+                let position = 0;
+
+                for (j = 0; j < myLibrary.length; j++) {
+                    if (myLibrary[j].order == deleteButton.id) {
+                    position = myLibrary[j].order;
+                    //trigger boolean that causes all items left in array to be re-ordered; call at beginning of submit
+                    }
+                }
+                console.log("position before deletion is " + position);
+                myLibrary.splice(position, 1);
+
+                //myLibrary.splice(deleteButton.id, 1); //does not work if something is deleted before it; throws off count - try finding position of thing first?
+                order--;
+                
                 console.table(myLibrary);
             });
 
@@ -149,9 +162,13 @@ submit.addEventListener("click", function(){
         ///bookCard content formatting///
 
             rightContent.appendChild(bookCard);
-            order++;
+            
+
+            
+            console.table(myLibrary);
 
   } //end of loop
+  order++;
 
 });
 
