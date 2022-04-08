@@ -66,7 +66,7 @@ submit.addEventListener("click", function(){
             bookCard.style.height = "350x";
             bookCard.style.borderRadius = "8px";
             //bookCard.style.border = "2px black solid"
-            bookCard.style.borderLeft = "20px #F0B428 solid";
+            //bookCard.style.borderLeft = "20px #F0B428 solid";
             //bookCard.style.borderTopLeftRadius = "4px";
             //bookCard.style.borderBottomLeftRadius = "4px";
             bookCard.style.minWidth = "300px";
@@ -75,11 +75,12 @@ submit.addEventListener("click", function(){
             bookCard.style.margin = "10px";
             bookCard.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.25)";
             bookCard.style.display = "flex";
-            bookCard.style.flexDirection = "column";
-            bookCard.style.alignItems = "center";
-            bookCard.style.gap = "10px";
-            bookCard.style.fontSize = "18px";
-            bookCard.style.textAlign = "center";
+            bookCard.style.flexDirection = "row";
+            bookCard.style.justifyContent = "space-between";
+            //bookCard.style.alignItems = "center";
+            //bookCard.style.gap = "10px";
+            //bookCard.style.fontSize = "18px";
+            //bookCard.style.textAlign = "center";
             
             
         ////bookCard styling//////
@@ -166,6 +167,59 @@ submit.addEventListener("click", function(){
                 + bookGenre + bookReadStatus + bookOrder);
 
 
+            
+
+            ///bookcardLeft
+
+            let bookCardLeft = document.createElement("div");
+            bookCardLeft.id = "bookCardLeft";
+            bookCard.appendChild(bookCardLeft);
+
+            let changeStatusButton = document.createElement("button");
+            changeStatusButton.className = "changeStatusButton";
+            changeStatusButton.id = i;
+            
+            let changeStatusButtonText = document.createElement("div");
+            changeStatusButtonText.className = "changeStatusButtonText";
+            
+
+            if (myLibrary[i].read == "true"){
+                changeStatusButtonText.textContent = "Read";
+                changeStatusButton.style.backgroundColor = "#F0B428";
+            } else {
+                changeStatusButtonText.textContent = "Want to Read";
+                changeStatusButton.style.backgroundColor = "#00a846";
+            }
+
+            
+
+
+            bookCardLeft.appendChild(changeStatusButton);
+            changeStatusButton.appendChild(changeStatusButtonText);
+            
+
+            ///bookcardLeft
+
+            ///bookCardRight
+
+            let bookCardRight = document.createElement("div");
+            bookCardRight.id = "bookCardRight";
+            
+            bookCard.appendChild(bookCardRight);
+
+            
+            bookCardRight.appendChild(bookTitleHeader);
+            bookCardRight.appendChild(bookTitle);
+            bookCardRight.appendChild(bookAuthorHeader);
+            bookCardRight.appendChild(bookAuthor);
+            bookCardRight.appendChild(bookNumberOfPagesHeader);
+            bookCardRight.appendChild(bookNumberOfPages);
+            bookCardRight.appendChild(bookGenreHeader);
+            bookCardRight.appendChild(bookGenre);
+
+            ///bookCardRight
+
+            ///delete button
             let deleteButton = document.createElement("button");
             deleteButton.className = "delete";
             deleteButton.id = i;
@@ -173,19 +227,7 @@ submit.addEventListener("click", function(){
             deleteButton.style.height = "25px";
             deleteButton.style.minWidth = "25px";
             deleteButton.style.minHeight = "25px";
-            deleteButton.style.alignSelf = "flex-end";
             deleteButton.textContent = "X";
-
-            bookCard.appendChild(deleteButton);
-            bookCard.appendChild(bookTitleHeader);
-            bookCard.appendChild(bookTitle);
-            bookCard.appendChild(bookAuthorHeader);
-            bookCard.appendChild(bookAuthor);
-            bookCard.appendChild(bookNumberOfPagesHeader);
-            bookCard.appendChild(bookNumberOfPages);
-            bookCard.appendChild(bookGenreHeader);
-            bookCard.appendChild(bookGenre);
-
 
 
             deleteButton.addEventListener("click", function(){
@@ -207,7 +249,8 @@ submit.addEventListener("click", function(){
                 console.table(myLibrary);
             });
 
-
+            bookCard.appendChild(deleteButton);
+            ///delete button
 
             
 
