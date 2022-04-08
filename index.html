@@ -11,41 +11,43 @@
 <body>
     <div id = "container">
         <div id ="left-content">
-            <form>
-                <fieldset>
-                    <div class = "field">
-                        <label for="title">Title:</label>
-                                <input type="text" id="title" name="title" required placeholder="The Great Gatsby">
-                    </div>
-                    <div class = "field">
-                        <label for="author">Author:</label>
-                                <input type="text" id="author" name="author" required placeholder="Francis Scott Fitzgerald">
-                    </div>
-                    <div class = "field">
-                        <label for="numberOfPages">Number of Pages:</label>
-                                <input type="number" id="numberOfPages" name="numberOfPages" required>
-                    </div>
-                    <div class = "field">
-                        <label for="genre">Genre:</label>
-                            <select id="genre" name="genre">
-                                <option value="literary-fiction">Literary Fiction</option>
-                                <option value="sci-fi">Sci-Fi</option>
-                                <option value="fantasy">Fantasy</option>
-                                <option value="mystery">Mystery</option>
-                                <option value="non-fiction">Non-Fiction</option>
-                                <option value="Other">Other</option>
-                            </select>
-                    </div>
-                    <div class = "field">
-                        <label for="read-status">Read</label>
-                            <input type="radio" id="read-status" name="read-status" value="true" required checked="true">
-                        <label for="read-status">Want to Read</label>
-                            <input type="radio" id="read-status" name="read-status" value="false" required>
-                    </div>
 
-                    <button type="button" id = "submit">Add to Collection</button>  
-                </fieldset>
-            </form>
+                <form>
+                    <fieldset>
+                        <div class = "field">
+                            <label for="title">Title:</label>
+                                    <input type="text" id="title" name="title" required placeholder="The Great Gatsby">
+                        </div>
+                        <div class = "field">
+                            <label for="author">Author:</label>
+                                    <input type="text" id="author" name="author" required placeholder="Francis Scott Fitzgerald">
+                        </div>
+                        <div class = "field">
+                            <label for="numberOfPages">Number of Pages:</label>
+                                    <input type="number" id="numberOfPages" name="numberOfPages" required>
+                        </div>
+                        <div class = "field">
+                            <label for="genre">Genre:</label>
+                                <select id="genre" name="genre">
+                                    <option value="literary-fiction">Literary Fiction</option>
+                                    <option value="sci-fi">Sci-Fi</option>
+                                    <option value="fantasy">Fantasy</option>
+                                    <option value="mystery">Mystery</option>
+                                    <option value="non-fiction">Non-Fiction</option>
+                                    <option value="other">Other</option>
+                                </select>
+                        </div>
+                        <div class = "field">
+                            <label for="read-status">Read</label>
+                                <input type="radio" id="read-status" name="read-status" value="true" required checked="true">
+                            <label for="read-status">Want to Read</label>
+                                <input type="radio" id="read-status" name="read-status" value="false" required>
+                        </div>
+
+                        <button type="button" id = "submit">Add to Collection</button>  
+                    </fieldset>
+                </form>
+            
         </div>
         <div id = "right-content">
         </div>

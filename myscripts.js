@@ -47,6 +47,12 @@ submit.addEventListener("click", function(){
    let cleanSlate = document.getElementById("right-content");
    cleanSlate.innerHTML = '';
 
+   //organize order
+    for (k = 0; k < myLibrary.length; k++) {
+        myLibrary[k].order = k;
+    }
+    
+    //create number of cards equal to myLibrary.length
   for (i=0; i < myLibrary.length; i++) {
     
 
@@ -56,21 +62,24 @@ submit.addEventListener("click", function(){
             const bookCard = document.createElement("div");
             bookCard.className = "bookCard"
             bookCard.id = "bookCard" + i;
-            bookCard.style.width = "250px";
-            bookCard.style.height = "300px";
+            bookCard.style.width = "300px";
+            bookCard.style.height = "350x";
             bookCard.style.borderRadius = "8px";
             //bookCard.style.border = "2px black solid"
-            bookCard.style.borderLeft = "12px #F0B428 solid";
+            bookCard.style.borderLeft = "20px #F0B428 solid";
             //bookCard.style.borderTopLeftRadius = "4px";
             //bookCard.style.borderBottomLeftRadius = "4px";
-            bookCard.style.minWidth = "250px";
-            bookCard.style.minHeight = "300px";
+            bookCard.style.minWidth = "300px";
+            bookCard.style.minHeight = "350px";
             bookCard.style.backgroundColor = "white";
             bookCard.style.margin = "10px";
             bookCard.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.25)";
             bookCard.style.display = "flex";
             bookCard.style.flexDirection = "column";
-
+            bookCard.style.alignItems = "center";
+            bookCard.style.gap = "10px";
+            bookCard.style.fontSize = "18px";
+            bookCard.style.textAlign = "center";
             
             
         ////bookCard styling//////
@@ -83,32 +92,75 @@ submit.addEventListener("click", function(){
             //console.log("currentBook is " + currentBook);
 
 
-
+            /////// category content
             let bookTitle = document.createElement("div");
-            bookTitle.className = "bookTitle";
-            bookTitle = myLibrary[i].title;
+            bookTitle.className = "category";
+            bookTitle.id = "bookTitle";
+            bookTitle.textContent  = myLibrary[i].title;
 
             let bookAuthor = document.createElement("div");
-            bookAuthor.className = "bookAuthor";
-            bookAuthor = myLibrary[i].author;
+            bookAuthor.className = "category";
+            bookAuthor.id = "bookAuthor";
+            bookAuthor.textContent  = myLibrary[i].author;
 
             let bookNumberOfPages = document.createElement("div");
-            bookNumberOfPages.className = "bookTitle";
-            bookNumberOfPages = myLibrary[i].numberOfPages;
+            bookNumberOfPages.className = "category";
+            bookNumberOfPages.id = "bookNumberOfPages";
+            bookNumberOfPages.textContent = myLibrary[i].numberOfPages;
 
             let bookGenre = document.createElement("div");
-            bookGenre.className = "bookTitle";
-            bookGenre = myLibrary[i].genre;
+            bookGenre.className = "category";
+            bookGenre.id = "bookGenre";
+            if (myLibrary[i].genre == "literary-fiction"){
+                bookGenre.textContent = "Literary Fiction";
+            }
+            if (myLibrary[i].genre == "sci-fi"){
+                bookGenre.textContent = "Science Fiction";
+            }
+            if (myLibrary[i].genre == "fantasy"){
+                bookGenre.textContent = "Fantasy";
+            }  
+            if (myLibrary[i].genre == "mystery"){
+                bookGenre.textContent = "Mystery";
+            }  
+            if (myLibrary[i].genre == "non-fiction"){
+                bookGenre.textContent = "Non-fiction";
+            }
+            if (myLibrary[i].genre == "other"){
+                bookGenre.textContent = "Other";
+            }        
+            
 
             let bookReadStatus = document.createElement("div");
-            bookReadStatus.className = "bookReadStatus";
+            bookReadStatus.className = "category";
+            bookAuthor.id = "bookReadStatus";
             bookReadStatus = myLibrary[i].read;
 
             let bookOrder = document.createElement("div");
-            bookOrder.className = "bookOrder";
+            bookOrder.className = "category";
+            bookAuthor.id = "bookOrder";
             bookOrder = myLibrary[i].order;
+            /////// category content
 
+            /////// category headers
+            let bookTitleHeader = document.createElement("div");
+            bookTitleHeader.className = "categoryHeader";
+            bookTitleHeader.textContent = "Title:";
 
+            let bookAuthorHeader = document.createElement("div");
+            bookAuthorHeader.className = "categoryHeader";
+            bookAuthorHeader.textContent = "Author:";
+
+            let bookNumberOfPagesHeader = document.createElement("div");
+            bookNumberOfPagesHeader.className = "categoryHeader";
+            bookNumberOfPagesHeader.textContent = "# of Pages:";
+
+            let bookGenreHeader = document.createElement("div");
+            bookGenreHeader.className = "categoryHeader";
+            bookGenreHeader.textContent = "Genre:";
+
+             
+            /////// category headers
 
             console.log(bookTitle + bookAuthor + bookNumberOfPages
                 + bookGenre + bookReadStatus + bookOrder);
@@ -117,12 +169,24 @@ submit.addEventListener("click", function(){
             let deleteButton = document.createElement("button");
             deleteButton.className = "delete";
             deleteButton.id = i;
-            deleteButton.style.width = "100px";
-            deleteButton.style.height = "100px";
-            deleteButton.style.minWidth = "100px";
-            deleteButton.style.minHeight = "100px";
+            deleteButton.style.width = "25px";
+            deleteButton.style.height = "25px";
+            deleteButton.style.minWidth = "25px";
+            deleteButton.style.minHeight = "25px";
+            deleteButton.style.alignSelf = "flex-end";
+            deleteButton.textContent = "X";
 
             bookCard.appendChild(deleteButton);
+            bookCard.appendChild(bookTitleHeader);
+            bookCard.appendChild(bookTitle);
+            bookCard.appendChild(bookAuthorHeader);
+            bookCard.appendChild(bookAuthor);
+            bookCard.appendChild(bookNumberOfPagesHeader);
+            bookCard.appendChild(bookNumberOfPages);
+            bookCard.appendChild(bookGenreHeader);
+            bookCard.appendChild(bookGenre);
+
+
 
             deleteButton.addEventListener("click", function(){
                 const element = document.getElementById("bookCard" + deleteButton.id);
@@ -132,13 +196,12 @@ submit.addEventListener("click", function(){
                 for (j = 0; j < myLibrary.length; j++) {
                     if (myLibrary[j].order == deleteButton.id) {
                     position = myLibrary[j].order;
-                    //trigger boolean that causes all items left in array to be re-ordered; call at beginning of submit
                     }
                 }
                 console.log("position before deletion is " + position);
                 myLibrary.splice(position, 1);
 
-                //myLibrary.splice(deleteButton.id, 1); //does not work if something is deleted before it; throws off count - try finding position of thing first?
+                
                 order--;
                 
                 console.table(myLibrary);
