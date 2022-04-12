@@ -181,6 +181,20 @@ submit.addEventListener("click", function(){
             
             let changeStatusButtonText = document.createElement("div");
             changeStatusButtonText.className = "changeStatusButtonText";
+
+            changeStatusButton.addEventListener("click", function(){
+               if (myLibrary[changeStatusButton.id].read == "true") {
+                   changeStatusButton.style.backgroundColor = "#00a846";
+                   myLibrary[changeStatusButton.id].changeReadStatus(); 
+                   //myLibrary[changeStatusButton.id].read = "false";
+                   changeStatusButtonText.textContent = "Want to Read";
+               } else if (myLibrary[changeStatusButton.id].read == "false") {
+                changeStatusButton.style.backgroundColor = "#F0B428";
+                myLibrary[changeStatusButton.id].changeReadStatus(); 
+                //myLibrary[changeStatusButton.id].read = "true";
+                changeStatusButtonText.textContent = "Read";
+               }
+            });
             
 
             if (myLibrary[i].read == "true"){
